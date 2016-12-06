@@ -1,0 +1,183 @@
+/* Sticky footer by ryanfait*/
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+.wrapper {
+  min-height: 100%;
+  margin: 0 auto -50px; 
+  /* the bottom margin is the 
+  negative value of the footer's
+  height */
+}
+footer, .push {
+  height: 50px; 
+  /* '.push' must be the same 
+  height as 'footer' */
+}
+/* ---------------------------- */
+
+/* debugging css */
+.footerContent{
+    font-size: 12px;
+}
+
+/* --------------------------- */
+
+/* header section */
+header{
+  height:50px;
+  border-bottom:1px solid #225B8B;
+}
+
+.hbtnbar{
+  float:right;
+  margin-top: 10px !important;
+  text-align: right !important;
+
+}
+
+.htitlebar{
+  float:left;
+  margin-top: 9px !important;
+  text-align: left !important;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size:24px;
+  color: #225B8B;
+}
+
+.content-title{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 24px;
+    color: #225B8B;    
+}
+
+.title-decoration{
+    
+    background-color: #225B8B;
+    color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 15px;
+    
+}
+
+.decoline{
+    border-bottom: 2px solid #225B8B;
+    position: absolute;
+    padding-top: 17px;
+    width: 97%;
+    z-index: -500;
+    
+}
+
+.content-sub-title{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #225B8B;
+    text-align: left;
+}
+
+.align-left{
+    text-align: left;
+}
+/* --------------------------- */
+
+/* content section */
+.content{
+  margin-top:10px;
+  margin-bottom:10px;
+  text-align:center;
+}
+
+img{
+  border-radius:4px;
+}
+
+.isPointer{
+    cursor:pointer;
+}
+
+.spacer{
+    height: 10px;
+}
+
+.isCode{
+    font-family: monospace;
+}
+
+.isSmallCode pre{
+    font-size: 11px;
+}
+
+pre{
+    background-color: #e9f2ff;
+    border: 1px solid #225b8b;
+}
+
+ul{
+  margin-top:5px;
+}
+
+nav{
+  height:40px;
+}
+
+ul.pagination{
+  margin:0px !important;
+  font-family:'Josefin Sans', sans-serif;
+}
+
+ul.pagination-sm>li>a{
+  font-size:14px;
+  cursor:pointer;
+}
+
+.DemoContainer ul{
+    list-style-type: none;
+    border:1px solid black;
+    max-width: 120px;
+    min-height: 55px;
+}
+
+.DemoContainer ul li{
+    font-size: 11px;
+    cursor: pointer;
+    margin: 2px;
+    margin-left: -38px;
+    background-color: #337ab7;
+    color: #fff;
+    padding-left: 3px;
+}
+
+comment{
+    color:forestgreen;
+}
+
+red{
+    color:maroon;
+}
+
+green{
+    color:darkgreen;
+}
+
+orange{
+    color:orange;
+}
+
+/* --------------------------- */
+
+/* footer section */
+footer{
+  background-color: #225B8B;
+  padding-top: 15px;
+  text-align: center;
+  color: #C1CFDB;
+}
+/* --------------------------- */

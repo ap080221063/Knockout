@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Demo</title>
+  <!--js-->
+  <script type='text/javascript' src='scripts/jquery/jquery.min.js'></script>
+  <script type='text/javascript' src='scripts/knockout/knockout.js' defer="defer"></script>
+  <script type='text/javascript' src='scripts/knockout/ko_mapping.js' defer="defer"></script>
+  <script type='text/javascript' src='scripts/bootstrap/js/bootstrap.min.js'></script>
+  <script type='text/javascript' src='scripts/underscore/underscore.js'></script>
+  <!--css-->
+  <link href="scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="scripts/stylesheets/stylesheet.css" rel="stylesheet">
+  <link href="scripts/font-awesome/css/font-awesome.min.css" rel="stylesheet" >
+  <!--google fonts-->
+  <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+  <!--viewmodels-->
+  <script type='text/javascript' src='scripts/viewmodels/MenuVM.js' defer="defer"></script>
+  <script type='text/javascript' src='scripts/viewmodels/IntroVM.js' defer="defer"></script>
+  <script type='text/javascript' src='scripts/viewmodels/jsVM.js' defer="defer"></script>
+  <script type='text/javascript' src='scripts/viewmodels/jqueryVM.js' defer="defer"></script>
+  <script type='text/javascript' src='scripts/viewmodels/knockoutVM.js' defer="defer"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="container">
+      <div class="row">
+        <!--MENU VM-->
+        <div id="titleAndMenu" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="htitlebar">
+            <span class="isPointer">
+                <span data-bind="click: function(){ vmMenuVM.changeChosen(undefined) }">Demo</span> 
+                <i data-bind="css: {'fa-toggle-on':vmMenuVM.objWidget(), 'fa-toggle-off':!vmMenuVM.objWidget()}, click: function(){ vmIntroVM.show(!vmMenuVM.objWidget())}" class="fa" aria-hidden="true"></i>
+            </span>
+          </div>
+          <div id="menu" class="btn-group btn-group-sm hbtnbar" role="group" aria-label="">
+            <nav>
+              <ul class="pagination pagination-sm" data-bind="foreach: vmMenuVM.menuArray()">
+                <li data-bind="css: {'active': vmMenuVM.chosenMenu()==name}, click: function(){ vmMenuVM.changeChosen(name) }">
+                    <a onClick="">
+                        <span data-bind="text:presentation"></span><span class="sr-only"></span>
+                    </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div id="content" class="container content">
+        <div id="intro" class="col-xs-12" style="text-align:left;" data-bind="visible: show">
+            <div id="jumbotronObjective" class="jumbotron">
+            <h2>Objectivo:</h2>
+              <p>Criar duas listas onde os itens são intermutáveis entre as mesmas quando clicados.</p>
+              <div>
+                <img src="images/mockup.png" />
+              </div>
+              <div>
+                  <br>
+                <a>
+                    <span class="btn btn-sm btn-primary" data-bind="click: function(){ vmIntroVM.show(false) }">
+                        <span class="glyphicon glyphicon-eye-close"></span>
+                        Esconder
+                    </span>
+                </a>
+              </div>             
+          </div>   
+        </div>
+        <div id="js" data-bind="visible:isvisible" class="col-xs-12">
+            <div class="col-xs-12">
+                <div class="col-xs-12 decoline"></div>
+                <p class="content-title"><span class="title-decoration">Javascript</span></p>
+            </div>
+            <div class="col-xs-12 align-left">
+                <div class="col-xs-12 content-sub-title">> Procedimento</div>
+                <div class="col-xs-12 spacer"></div>
+                <div class="col-xs-4">
+                    <div>HTML</div>
+                    <ul>
+                        <li>Definir o html da lista e dos itens;</li>
+                        <li>Atribuir id's necessários aos elementos;</li>
+                        <li>Definir os eventos onclick para os itens;</li>
+                    </ul>
+                    <div>
+                        <span class="badge">DOM</span> <span class="badge">eventos</span>
+                    </div>
+                </div>
+                <div class="col-xs-8">
+                    <div class="isCode">
+                        <pre>&lt;div id="jsDemo">
+  &lt;div>
+    &lt;ul>
+      &lt;li <b>id="jsitem1"</b> <b>onclick</b>="jsItemClick('listA',this.id)">jsitem1&lt;/li>
+      &lt;li <b>id="jsitem2"</b> <b>onclick</b>="jsItemClick('listA',this.id)">jsitem2&lt;/li>
+      &lt;li <b>id="jsitem3"</b> <b>onclick</b>="jsItemClick('listA',this.id)">jsitem3&lt;/li>
+    &lt;/ul>
+  &lt;/div>               
+  &lt;div>
+    &lt;ul>
+      &lt;li <b>id="jsitem4"</b> <b>onclick</b>="jsItemClick('listB',this.id)">jsitem4&lt;/li>
+    &lt;/ul>
+  &lt;/div>
+&lt;/div></pre>
+                    </div> 
+                </div>
+                <div class="col-xs-12 spacer"></div>
+                <div class="col-xs-6">
+                    <div>Script</div>
+                    <ul>
+                        <li>Definir variáveis;</li>
+                        <li>Criar a função do evento onclick;</li>
+                        <li>Criar a função que (re)constroi a lista html;</li>
+                    </ul>
+                    <div>
+                        <span class="badge">manipulação de arrays</span> <span class="badge">manipulação do GUI</span>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="isCode">
+                        <pre>var listHTML = '';
+var listA = ['jsitem1', 'jsitem2', 'jsitem3'];
+var listB = ['jsitem4'];                        </pre>
+                    </div>
+                </div>
+                <div class="col-xs-6"></div>
+                <div class="col-xs-6">
+                    <div class="isCode">
+                        <pre>function jsItemClick(list,itemID){
+    
+    if(list == 'listA'){
+        <comment>//add item to other list</comment>
+        listB.push(itemID);    
+        <comment>//remove item from old list</comment>
+        var index = listA.indexOf(itemID);
+        listA.splice(index, 1);     
+        <comment>//recreate lists</comment>
+        <b>jsRecreateLists();</b>
+    }else{
+        <comment>//add item to other list</comment>
+        listA.push(itemID);      
+        <comment>//remove item from old list</comment>
+        var index = listB.indexOf(itemID);
+        listB.splice(index, 1);    
+        <comment>//recreate lists</comment>
+        <b>jsRecreateLists();</b>
+    }
+}                     </pre>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div>
+                        <span class="badge">DOM</span>
+                        <span class="badge">concatenações..</span>
+                        <span class="badge">manutenção dolorosa</span>
+                        <span class="badge">funciona.. não mexe!</span>
+                    </div>
+                </div>
+                <div class="col-xs-9">
+                    <div class="isCode">
+                        <pre>function jsRecreateLists(){
+    
+    listHTML = '&lt;div class="DemoContainer col-xs-2">&lt;ul>';
+    
+    for(var i=0; i&lt;listA.length; i++){
+        listHTML = listHTML + '&lt;li id="'+listA[i]+'" 
+        onclick="jsItemClick('+'\'listA\''+',this.id)">'+listA[i]+'&lt;/li>';
+    }
+    
+    listHTML = listHTML + '&lt;/ul>&lt;/div>&lt;div class="DemoContainer col-xs-2">&lt;ul>';
+ 
+    for(var i=0; i&lt;listB.length; i++){
+        listHTML = listHTML + '&lt;li id="'+listB[i]+'" 
+        onclick="jsItemClick('+'\'listB\''+',this.id)">'+listB[i]+'&lt;/li>';
+    }
+    
+    listHTML = listHTML + '&lt;/ul>&lt;/div>';
+   
+    <b>document.getElementById('jsDemo').innerHTML = listHTML;</b>
+}</pre>
+                    </div>
+                </div>
+            <div class="col-xs-12 content-sub-title">> Demo</div>
+            <div id="jsDemo" class="col-xs-12 align-left">
+                <div class="DemoContainer col-xs-2">
+                    <ul>
+                        <li id="jsitem1" onclick="jsItemClick('listA',this.id)">jsitem1</li>
+                        <li id="jsitem2" onclick="jsItemClick('listA',this.id)">jsitem2</li>
+                        <li id="jsitem3" onclick="jsItemClick('listA',this.id)">jsitem3</li>
+                    </ul>
+                </div>               
+                <div class="DemoContainer col-xs-2">
+                    <ul>
+                        <li id="jsitem4" onclick="jsItemClick('listB',this.id)">jsitem4</li>
+                    </ul>
+                </div>                
+            </div>
+            </div>
+        </div>
+        <div id="jquery" data-bind="visible:isvisible" class="col-xs-12">
+            <div class="col-xs-12">
+                <div class="col-xs-12 decoline"></div>
+                <p class="content-title"><span class="title-decoration">JQuery & Co.</span></p>
+            </div>
+            <div class="col-xs-12 align-left">
+                <div class="col-xs-12 content-sub-title">> Procedimento</div>
+                <div class="col-xs-12 spacer"></div>
+                <div class="col-xs-6">
+                <div>HTML</div>
+                    <ul>
+                        <li>Definir os elementos html estruturais da lista;</li>
+                    </ul>
+                    <div><span class="badge">HTML simplificado</span></div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="isCode">
+                        <pre>&lt;div id="jQDemo">
+  &lt;div>
+    &lt;ul id="uljQlist1">
+    &lt;/ul>
+  &lt;/div>               
+  &lt;div>
+    &lt;ul id="uljQlist2">
+    &lt;/ul>
+  &lt;/div>
+&lt;/div>               </pre>
+                    </div>
+                </div>
+                <div class="col-xs-12 spacer"></div>
+                <div class="col-xs-6">
+                    <div>Script</div>
+                    <ul>
+                        <li>Definir variáveis;</li>                       
+                        <li>Definir código para recriar as listas;</li>
+                        <li>Definir código para mapear os itens;</li>
+                    </ul>
+                    <div>
+                        <span class="badge">simplificar código com bibliotecas</span> <span class="badge">ausência da manipulação direta DOM</span>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="isCode">
+                        <pre>var jQlistHTML = '';
+var jQlist1 = ['jqitem1', 'jqitem2', 'jqitem3'];
+var jQlist2 = ['jqitem4'];</pre>
+                    </div>
+                </div>
+                <div class="col-xs-6"></div>
+                <div class="col-xs-6">
+                    <div class="isCode">
+                        <pre>$(function(){
+    mapList(jQlist1, 'jQlist1');
+    mapList(jQlist2, 'jQlist2');
+})</pre>
+                    </div>
+                </div>
+                <div class="col-xs-5"></div>
+                <div class="col-xs-7">
+                    <div class="isCode">
+                        <pre>function mapList(list, listName){
+    <comment>//wipe items</comment>
+    $('#ul'+listName).html("");
+    <comment>//recreate each one</comment>
+    _.each(list, function(invar){
+        <comment>//add item</comment>
+        $('#ul'+listName).append('&lt;li id="'+invar+'">'+invar+'&lt;/li>');
+        <comment>//map item with click function</comment>
+        $("#"+invar).bind("click", function(){
+            <comment>//adds item to new list</comment>
+            (listName=='jQlist1'?jQlist2:jQlist1).push(invar);
+            <comment>//removes item from old list</comment>
+            list.splice(_.indexOf(list, this.id), 1);
+            <comment>//recreate lists</comment>
+            mapList(jQlist1, 'jQlist1');
+            mapList(jQlist2, 'jQlist2');
+        });
+        
+    });
+}</pre>
+                    </div>
+                </div>
+                <div class="col-xs-12 spacer"></div>
+            <div class="col-xs-12 content-sub-title">> Demo</div>
+            <div id="jQDemo" class="col-xs-12 align-left">
+                <div class="DemoContainer col-xs-2">
+                    <ul id="uljQlist1">
+                    </ul>
+                </div>               
+                <div class="DemoContainer col-xs-2">
+                    <ul id="uljQlist2">
+                    </ul>
+                </div>                
+            </div>
+            </div>
+        </div>
+        <div id="ko" data-bind="visible:isvisible" class="col-xs-12">
+            <div class="col-xs-12">
+                <div class="col-xs-12 decoline"></div>
+                <p class="content-title"><span class="title-decoration">Knockout.js</span></p>
+            </div>
+            <div class="col-xs-12 align-left">
+                <div class="col-xs-12 content-sub-title">> Procedimento</div>
+                <div class="col-xs-12 spacer"></div>
+                <div class="col-xs-4">
+                  <div>HTML</div>
+                  <ul>
+                    <li>construir o html base;</li>
+                    <li>ligar o view model aos elementos html através de binding;</li>
+                  </ul>
+                </div>
+                <div class="col-xs-8">
+                    <div class="isCode">
+                        <pre>&lt;div id=&quot;koDemo&quot;&gt;
+  &lt;div&gt;
+    &lt;ul <red>data-bind=</red>&quot;<green>foreach:</green> ls1&quot;&gt;
+     &lt;li <red>data-bind=</red>&quot;<orange>click:</orange> function(){ vmkoVM.itmClick(vmkoVM.ls1,$data) }&quot;&gt;
+      &lt;span <red>data-bind=</red>&quot;<orange>text:</orange>$data&quot;&gt;&lt;/span&gt;
+     &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;div&gt;               
+    &lt;ul <red>data-bind=</red>&quot;<green>foreach:</green> ls2&quot;&gt;
+      &lt;li <red>data-bind=</red>&quot;<orange>click:</orange> function(){ vmkoVM.itmClick(vmkoVM.ls2,$data) }&quot;&gt;
+        &lt;span <red>data-bind=</red>&quot;<orange>text:</orange>$data&quot;&gt;&lt;/span&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+                        </pre>
+                    </div>
+                </div>
+                <div class="col-xs-12 spacer"></div>
+                <div class="col-xs-4">
+                  <div>Script</div>
+                  <ul>
+                    <li>Definir as variáveis;</li>
+                    <li>Definir a função click;</li>
+                  </ul>
+                </div>
+                <div class="col-xs-8">
+                    <div class="isCode">
+                        <pre>
+  var vm = this;
+    
+  vm.ls1 = ko.observableArray(['item1','item2','item3']);
+  vm.ls2 = ko.observableArray(['item4']);
+    
+  vm.itmClick = function(list, item){
+      if(list()==vm.ls1()){
+        vm.ls1.remove(item);
+        vm.ls2.push(item);  
+      }else{
+        vm.ls2.remove(item);
+        vm.ls1.push(item); 
+      };               
+  }</pre>
+                    </div>
+                </div>
+                <div class="col-xs-12 spacer"></div>
+                <div class="col-xs-12 content-sub-title">> Demo</div>
+                <div id="jQDemo" class="col-xs-12 align-left">
+                  <div class="DemoContainer col-xs-2">
+                     <ul data-bind="foreach: ls1">
+                         <li data-bind="click: function(){ vmkoVM.itmClick(vmkoVM.ls1,$data) }">
+                             <span data-bind="text:$data"></span>
+                         </li>
+                     </ul>
+                  </div>               
+                  <div class="DemoContainer col-xs-2">
+                     <ul data-bind="foreach: ls2">
+                         <li data-bind="click: function(){ vmkoVM.itmClick(vmkoVM.ls2,$data) }">
+                             <span data-bind="text:$data"></span>
+                         </li>
+                     </ul>
+                  </div>                
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="push"></div>
+  </div>
+  <footer class="container">
+    <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 footinner">
+      <div class="footerContent" style="float:left; width:100%; text-align:right;">André Pereira, 2016</div>
+    </div>
+  </footer>
+</body>
+</html>
