@@ -1,4 +1,4 @@
-# KnockoutDemo
+# Knockout
 one-page web demo implemented in knockout.js
 
 This is a simple implementation of a one-page web site using html and knockout.js.
